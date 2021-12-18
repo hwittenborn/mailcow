@@ -22,8 +22,6 @@ find ./ \
      -not -path "${deploy_path}/service.sh" \
      -exec cp '{}' "${deploy_path}/{}" -R \;
 
-find /etc/letsencrypt/
-
 cp /etc/letsencrypt/live/hunterwittenborn.com/fullchain.pem "${deploy_path}/data/assets/ssl/cert.pem"
 cp /etc/letsencrypt/live/hunterwittenborn.com/privkey.pem "${deploy_path}/data/assets/ssl/key.pem"
 

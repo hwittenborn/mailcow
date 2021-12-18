@@ -24,7 +24,7 @@ local configureAndDeploy() = {
 
         {
             name: "lets-encrypt",
-            host: {path: "/etc/letsencrypt/live/hunterwittenborn.com"}
+            host: {path: "/etc/letsencrypt"}
         }
     ],
 
@@ -62,7 +62,7 @@ local configureAndDeploy() = {
 
                 {
                     name: "lets-encrypt",
-                    path: "/etc/letsencrypt/live/hunterwittenborn.com"
+                    path: "/etc/letsencrypt"
                 }
             ],
             commands: [
