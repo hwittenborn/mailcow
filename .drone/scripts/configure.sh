@@ -15,3 +15,4 @@ sed -i "s|^HTTP_PORT=.*|HTTP_PORT=5070|" mailcow.conf
 sed -i "s|^HTTPS_PORT=.*|HTTPS_PORT=5071|" mailcow.conf
 sed -Ei "s;^(HTTP_BIND)=.*|^(HTTPS_BIND)=.*;\1=127.0.0.1;g" mailcow.conf
 sed -i "s|^ADDITIONAL_SAN=.*|ADDITIONAL_SAN=imap.${hw_url},smtp.${hw_url}|" mailcow.conf
+sed -i "s|^SKIP_LETS_ENCRYPT=.*|SKIP_LETS_ENCRYPT=y|" mailcow.conf
