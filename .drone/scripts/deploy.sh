@@ -14,13 +14,27 @@ find "${deploy_path}" \
      -maxdepth 1 \
      -not -path "${deploy_path}" \
      -not -path "${deploy_path}/service.sh" \
-     -exec rm '{}' -rf \;
+     -not -path "${deploy_path}/data"
+     -exec rm '{}' -rfv \;
+
+find "${deploy_path}/data" \
+     -maxdepth 1 \
+     -not -path "${deploy_path}/data" \
+     -noth -path "${deploy_path}/data/user" \
+     -exec rm '{}' -rfv \;
 
 find ./ \
      -maxdepth 1 \
      -not -path './' \
-     -not -path "${deploy_path}/service.sh" \
-     -exec cp '{}' "${deploy_path}/{}" -R \;
+     -not -path "./service.sh" \
+     -not -path "./data" \
+     -exec cp '{}' "${deploy_path}/{}" -Rv \;
+
+find ./data \
+     -maxdepth 1 \
+     -not -path "./data" \
+     -noth -path "./data/user" \
+     -exec cp '{}' "${deploy_path}/{}" -Rv \;
 
 cp /etc/letsencrypt/live/hunterwittenborn.com/fullchain.pem "${deploy_path}/data/assets/ssl/cert.pem"
 cp /etc/letsencrypt/live/hunterwittenborn.com/privkey.pem "${deploy_path}/data/assets/ssl/key.pem"
