@@ -4,17 +4,22 @@ set -ex
 apt-get update
 apt-get install docker.io -y
 
-find '/var/www/mailcow.hunterwittenborn.com' \
+deploy_path='/var/www/mailcow.hunterwittenborn.com'
+
+find "${deploy_path}" \
      -maxdepth 1 \
-     -not -path '/var/www/mailcow.hunterwittenborn.com' \
-     -not -path '/var/www/mailcow.hunterwittenborn.com/service.sh' \
+     -not -path "${deploy_path}" \
+     -not -path "${deploy_path}/service.sh" \
      -exec rm '{}' -rf \;
 
 find ./ \
      -maxdepth 1 \
-     -exec cp '{}' '/var/www/mailcow.hunterwittenborn.com/{}' -R \;
+     -exec cp '{}' "${deploy_path}/{}" -R \;
 
-cd '/var/www/mailcow.hunterwittenborn.com'
+cd "${deploy_path}"
+
+cp /etc/letsencrypt/live/hunterwittenborn.com/fullchain.pem "${deploy_path}/data/assets/ssl/cert.pem"
+cp /etc/letsencrypt/live/hunterwittenborn.com/privkey.pem "${deploy_path}/data/assets/ssl/key.pem"
 
 docker-compose down --remove-orphans
 docker-compose up -d
