@@ -14,7 +14,7 @@ find "${deploy_path}" \
      -maxdepth 1 \
      -not -path "${deploy_path}" \
      -not -path "${deploy_path}/service.sh" \
-     -not -path "${deploy_path}/data"
+     -not -path "${deploy_path}/data" \
      -exec rm '{}' -rfv \;
 
 find "${deploy_path}/data" \
