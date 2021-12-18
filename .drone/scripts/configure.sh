@@ -2,7 +2,7 @@
 set -ex
 
 apt-get update
-apt-get install sed openssl docker-compose docker git gawk -y
+apt-get install curl sed openssl docker-compose docker git gawk -y
 
 export MAILCOW_HOSTNAME="mailcow.$${hw_url}"
 export MAILCOW_TZ="$(cat /etc/timezone)"
