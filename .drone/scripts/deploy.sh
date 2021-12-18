@@ -20,7 +20,7 @@ find "${deploy_path}" \
 find "${deploy_path}/data" \
      -maxdepth 1 \
      -not -path "${deploy_path}/data" \
-     -noth -path "${deploy_path}/data/user" \
+     -not -path "${deploy_path}/data/user" \
      -exec rm '{}' -rfv \;
 
 find ./ \
@@ -33,7 +33,7 @@ find ./ \
 find ./data \
      -maxdepth 1 \
      -not -path "./data" \
-     -noth -path "./data/user" \
+     -not -path "./data/user" \
      -exec cp '{}' "${deploy_path}/{}" -Rv \;
 
 cp /etc/letsencrypt/live/hunterwittenborn.com/fullchain.pem "${deploy_path}/data/assets/ssl/cert.pem"
