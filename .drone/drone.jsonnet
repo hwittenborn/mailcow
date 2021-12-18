@@ -20,6 +20,11 @@ local configureAndDeploy() = {
         {
             name: "mailcow",
             host: {path: "/var/www/mailcow.hunterwittenborn.com"}
+        },
+
+        {
+            name: "lets-encrypt",
+            host: {path: "/etc/letsencrypt/live/hunterwittenborn.com/"}
         }
     ],
 
@@ -53,6 +58,11 @@ local configureAndDeploy() = {
                 {
                     name: "mailcow",
                     path: "/var/www/mailcow.hunterwittenborn.com"
+                },
+
+                {
+                    name: "lets-encrypt",
+                    path: "/etc/letsencrypt/live/hunterwittenborn.com/"
                 }
             ],
             commands: [
