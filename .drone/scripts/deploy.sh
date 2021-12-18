@@ -17,11 +17,11 @@ find "${deploy_path}" \
      -not -path "${deploy_path}/data" \
      -exec rm '{}' -rfv \;
 
-find "${deploy_path}/data" \
-     -maxdepth 1 \
-     -not -path "${deploy_path}/data" \
-     -not -path "${deploy_path}/data/user" \
-     -exec rm '{}' -rfv \;
+#find "${deploy_path}/data" \
+#     -maxdepth 1 \
+#     -not -path "${deploy_path}/data" \
+#     -not -path "${deploy_path}/data/user" \
+#     -exec rm '{}' -rfv \;
 
 find ./ \
      -maxdepth 1 \
