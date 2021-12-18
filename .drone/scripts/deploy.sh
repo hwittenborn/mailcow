@@ -7,7 +7,7 @@ apt-get install docker.io -y
 deploy_path='/var/www/mailcow.hunterwittenborn.com'
 
 cd "${deploy_path}"
-docker-compose down --remove-orphans
+#docker-compose down --remove-orphans
 cd -
 
 find "${deploy_path}" \
