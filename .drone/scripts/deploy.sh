@@ -30,7 +30,9 @@ find ./ \
      -not -path "./data" \
      -exec cp '{}' "${deploy_path}/{}" -Rv \;
 
-mkdir "${deploy_path}/data/"
+if ! [[ -d "${deploy_path}/data/" ]]; then
+	mkdir "${deploy_path}/data/"
+fi
 
 find ./data \
      -maxdepth 1 \
