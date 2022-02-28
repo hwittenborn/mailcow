@@ -307,6 +307,7 @@ CONFIG_ARRAY=(
   "ADDITIONAL_SERVER_NAMES"
   "ACME_CONTACT"
   "WATCHDOG_VERBOSE"
+  "WEBAUTHN_ONLY_TRUSTED_VENDORS"
 )
 
 sed -i --follow-symlinks '$a\' mailcow.conf
@@ -514,6 +515,13 @@ for option in ${CONFIG_ARRAY[@]}; do
       echo '# https://mailcow.github.io/mailcow-dockerized-docs/debug-reset-tls/' >> mailcow.conf
       echo 'ACME_CONTACT=' >> mailcow.conf
   fi
+  elif [[ ${option} == "WEBAUTHN_ONLY_TRUSTED_VENDORS" ]]; then
+    if ! grep -q ${option} mailcow.conf; then
+      echo "# WebAuthn device manufacturer verification" >> mailcow.conf
+      echo '# After setting WEBAUTHN_ONLY_TRUSTED_VENDORS=y only devices from trusted manufacturers are allowed' >> mailcow.conf
+      echo '# root certificates can be placed for validation under mailcow-dockerized/data/web/inc/lib/WebAuthn/rootCertificates' >> mailcow.conf
+      echo 'WEBAUTHN_ONLY_TRUSTED_VENDORS=n' >> mailcow.conf
+    fi
 elif [[ ${option} == "WATCHDOG_VERBOSE" ]]; then
     if ! grep -q ${option} mailcow.conf; then
       echo '# Enable watchdog verbose logging' >> mailcow.conf
@@ -709,6 +717,22 @@ if [ -f "data/conf/rspamd/local.d/metrics.conf" ]; then
     echo "The deprecated configuration file metrics.conf will be moved to metrics.conf_deprecated after updating mailcow."
   fi
   mv data/conf/rspamd/local.d/metrics.conf data/conf/rspamd/local.d/metrics.conf_deprecated
+fi
+
+# Set app_info.inc.php
+mailcow_git_version=$(git describe --tags `git rev-list --tags --max-count=1`)
+if [ $? -eq 0 ]; then
+  mailcow_git_url=$(git config --get remote.origin.url)
+  echo '<?php' > data/web/inc/app_info.inc.php
+  echo '  $MAILCOW_GIT_VERSION="'$mailcow_git_version'";' >> data/web/inc/app_info.inc.php
+  echo '  $MAILCOW_GIT_URL="'$mailcow_git_url'";' >> data/web/inc/app_info.inc.php
+  echo '?>' >> data/web/inc/app_info.inc.php
+else
+  echo '<?php' > data/web/inc/app_info.inc.php
+  echo '  $MAILCOW_GIT_VERSION="";' >> data/web/inc/app_info.inc.php
+  echo '  $MAILCOW_GIT_URL="";' >> data/web/inc/app_info.inc.php
+  echo '?>' >> data/web/inc/app_info.inc.php
+  echo -e "\e[33mCannot determine current git repository version...\e[0m"
 fi
 
 if [[ ${SKIP_START} == "y" ]]; then

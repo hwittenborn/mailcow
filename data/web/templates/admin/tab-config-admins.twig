@@ -1,5 +1,4 @@
-<div class="tab-content" style="padding-top:20px">
-  <div role="tabpanel" class="tab-pane active" id="tab-config-admins">
+<div role="tabpanel" class="tab-pane active" id="tab-config-admins">
     <div class="panel panel-danger">
       <div class="panel-heading xs-show">{{ lang.admin.admin_details }}</div>
       <div class="panel-body">
@@ -40,7 +39,7 @@
           <div class="col-sm-9 col-xs-7">
             <select data-style="btn btn-sm dropdown-toggle bs-placeholder btn-default" data-width="fit" id="selectTFA" class="selectpicker" title="{{ lang.tfa.select }}">
               <option value="yubi_otp">{{ lang.tfa.yubi_otp }}</option>
-              <option value="u2f">{{ lang.tfa.u2f }}</option>
+              <option value="webauthn">{{ lang.tfa.webauthn }}</option>
               <option value="totp">{{ lang.tfa.totp }}</option>
               <option value="none">{{ lang.tfa.none }}</option>
             </select>
@@ -61,7 +60,8 @@
                   <th style="min-width:240px;text-align: right">{{ lang.admin.action }}</th>
                 </tr>
                 {% include 'fido2.twig' %}
-            </table>
+              </table>
+            </div>
           </div>
           <br>
         </div>
@@ -221,8 +221,6 @@
         </div>
       </div>
     </div>
-  </div>
-
   <div class="panel panel-default">
     <div class="panel-heading xs-show">{{ lang.admin.domain_admins }}</div>
     <div class="panel-body">
@@ -248,3 +246,4 @@
     </div>
   </div>
 </div>
+
