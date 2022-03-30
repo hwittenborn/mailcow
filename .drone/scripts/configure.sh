@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 set -ex
 
-apt-get update
-apt-get install curl sed openssl docker-compose docker git gawk -y
+export hw_url='hunterwittenborn.com'
 
 export MAILCOW_HOSTNAME="mailcow.${hw_url}"
 export MAILCOW_TZ="$(cat /etc/timezone)"
