@@ -1,7 +1,7 @@
 local configureAndDeploy() = {
     name: "configure-and-deploy",
     kind: "pipeline",
-    type: "docker",
+    type: "exec",
     triggers: {
         branch: ["master"],
         repo: ["hwittenborn/mailcow"]
