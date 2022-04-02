@@ -19,7 +19,10 @@ local configureAndDeploy() = {
 
         {
             name: "deploy",
-            commands: [".drone/scripts/deploy.sh"]
+            commands: [
+		"echo test",
+	    	".drone/scripts/deploy.sh"
+	    ]
         }
     ]
 };
