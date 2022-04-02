@@ -328,7 +328,6 @@ services:
       ports:
         - "${SMTP_PORT:-25}:25"
         - "${SMTPS_PORT:-465}:465"
-        - "466:465" # Hacky workaround until we have access to port 465 on Hetzner.
         - "${SUBMISSION_PORT:-587}:587"
       restart: always
       dns:
