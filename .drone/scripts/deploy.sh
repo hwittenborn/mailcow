@@ -37,8 +37,8 @@ find ./data \
      -not -path "./data/user" \
      -exec cp '{}' "${deploy_path}/{}" -Rv \;
 
-cp /etc/letsencrypt/live/mailcow.hunterwittenborn.com/fullchain.pem "${deploy_path}/data/assets/ssl/cert.pem"
-cp /etc/letsencrypt/live/mailcow.hunterwittenborn.com/privkey.pem "${deploy_path}/data/assets/ssl/key.pem"
+cp /etc/letsencrypt/live/homelab/fullchain.pem "${deploy_path}/data/assets/ssl/cert.pem"
+cp /etc/letsencrypt/live/homelab/privkey.pem "${deploy_path}/data/assets/ssl/key.pem"
 
 cd "${deploy_path}"
 docker-compose up -d
