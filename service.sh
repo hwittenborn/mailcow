@@ -14,6 +14,7 @@ case "${1}" in
     backup-prepare)
         docker-compose up -d
         yes | BACKUP_LOCATION="${PWD}/backups" helper-scripts/backup_and_restore.sh backup all --delete-days 1
+        docker-compose down
         ;;
     update)
         docker-compose pull
