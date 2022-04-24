@@ -6,7 +6,7 @@ local configureAndDeploy() = {
         branch: ["master"],
         repo: ["hwittenborn/mailcow"]
     },
-    node: {server: "mailcow"},
+    node: {server: "homelab"},
     steps: [
         {
             name: "configure",
